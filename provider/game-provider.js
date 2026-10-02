@@ -1,6 +1,8 @@
-// Game Provider (spribe.com)
 const express = require("express");
+const cors = require("cors");
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
 // Crash multiplier generator
@@ -13,12 +15,11 @@ function getCrashPoint() {
 app.post("/play", (req, res) => {
   const { token, bet } = req.body;
 
-  // Verify token (mock)
   if (!token.startsWith("casino-token")) {
     return res.json({ success: false, message: "Invalid token" });
   }
 
-  let crashPoint = getCrashPoint();
+  const crashPoint = getCrashPoint();
   let win = 0;
 
   if (bet.cashout && bet.cashout <= crashPoint) {
@@ -28,6 +29,4 @@ app.post("/play", (req, res) => {
   res.json({ success: true, crashPoint, win });
 });
 
-app.listen(5000, () => {
-  console.log("Game provider running at http://localhost:5000 (spribe.com)");
-});
+app.listen(5000, () => console.log("Provider running at http://localhost:5000"));
