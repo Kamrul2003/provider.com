@@ -1,0 +1,12 @@
+{
+  "name": "game-provider-domain",
+  "version": "1.0.0",
+  "description": "Game provider server for Aviator",
+  "main": "game-provider.js",
+  "scripts": {
+    "start": "node game-provider.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
